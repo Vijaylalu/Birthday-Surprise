@@ -1,0 +1,1880 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>A Little Surprise ♡</title>
+
+<style>
+
+/* =========================
+   BASIC
+========================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    overflow: hidden;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(190,90,170,.22),
+            transparent 32%
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(120,80,190,.20),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 50% 100%,
+            rgba(220,100,160,.12),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #24172e,
+            #100b18 55%,
+            #08060d
+        );
+
+    color: white;
+    font-family: Georgia, serif;
+}
+
+
+/* =========================
+   COMMON SCREEN
+========================= */
+
+.screen {
+    position: absolute;
+    inset: 0;
+
+    min-height: 100vh;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+
+    text-align: center;
+
+    padding: 22px;
+
+    transition:
+        opacity .8s ease,
+        transform .8s ease;
+}
+
+.hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: scale(1.08);
+}
+
+
+/* =========================
+   GLOW
+========================= */
+
+.glow {
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    border-radius: 50%;
+
+    filter: blur(70px);
+
+    pointer-events: none;
+}
+
+.glow.one {
+    background: #d878bd;
+
+    top: -60px;
+    left: -60px;
+
+    opacity: .18;
+}
+
+.glow.two {
+    background: #8870e8;
+
+    bottom: -60px;
+    right: -50px;
+
+    opacity: .18;
+}
+
+
+/* =========================
+   STARS
+========================= */
+
+.stars {
+    position: absolute;
+    inset: 0;
+
+    pointer-events: none;
+}
+
+.star {
+    position: absolute;
+
+    color: white;
+    opacity: .6;
+
+    text-shadow: 0 0 9px white;
+
+    animation:
+        twinkle 2.5s infinite alternate;
+}
+
+.star:nth-child(1) {
+    top: 8%;
+    left: 12%;
+}
+
+.star:nth-child(2) {
+    top: 16%;
+    left: 73%;
+
+    font-size: 18px;
+
+    animation-delay: .4s;
+}
+
+.star:nth-child(3) {
+    top: 29%;
+    left: 23%;
+
+    font-size: 8px;
+
+    animation-delay: .8s;
+}
+
+.star:nth-child(4) {
+    top: 37%;
+    right: 10%;
+
+    animation-delay: 1.2s;
+}
+
+.star:nth-child(5) {
+    top: 58%;
+    left: 7%;
+
+    font-size: 14px;
+
+    animation-delay: .5s;
+}
+
+.star:nth-child(6) {
+    top: 68%;
+    right: 18%;
+
+    animation-delay: 1.5s;
+}
+
+.star:nth-child(7) {
+    bottom: 12%;
+    left: 21%;
+
+    animation-delay: .9s;
+}
+
+.star:nth-child(8) {
+    bottom: 17%;
+    right: 9%;
+
+    font-size: 15px;
+
+    animation-delay: 1.8s;
+}
+
+
+/* =========================
+   OPENING
+========================= */
+
+.main-heart {
+    font-size: 58px;
+
+    color: #f1afd8;
+
+    margin-bottom: 25px;
+
+    animation:
+        heartbeat 2.5s infinite;
+
+    text-shadow:
+        0 0 12px rgba(255,170,220,.8),
+        0 0 35px rgba(220,100,190,.4);
+}
+
+h1 {
+    font-size: 29px;
+    font-weight: normal;
+
+    margin-bottom: 15px;
+}
+
+p {
+    font-family: Arial, sans-serif;
+
+    color: #d9cedc;
+
+    font-size: 15px;
+    line-height: 1.7;
+
+    max-width: 310px;
+
+    margin-bottom: 32px;
+}
+
+button {
+    border: 1px solid rgba(255,190,225,.65);
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(238,145,204,.9),
+            rgba(156,110,201,.9)
+        );
+
+    color: white;
+
+    padding: 14px 34px;
+
+    border-radius: 40px;
+
+    font-size: 15px;
+
+    font-family: Georgia, serif;
+
+    box-shadow:
+        0 0 14px rgba(230,130,200,.4),
+        0 0 30px rgba(170,100,190,.2);
+
+    cursor: pointer;
+}
+
+button:active {
+    transform: scale(.93);
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+.countdown-text {
+    color: #d9cedc;
+
+    font-size: 14px;
+
+    margin-bottom: 25px;
+}
+
+#countdownNumber {
+    font-size: 105px;
+
+    color: #f6b6dc;
+
+    text-shadow:
+        0 0 20px rgba(255,150,220,.9),
+        0 0 55px rgba(210,100,190,.55);
+
+    animation:
+        countdownAppear 1s ease;
+}
+
+
+/* =========================
+   BALLOON SCREEN
+========================= */
+
+#balloonScreen {
+    justify-content: flex-start;
+
+    padding-top: 55px;
+}
+
+.balloon-heading {
+    font-size: 26px;
+
+    margin-bottom: 8px;
+}
+
+.balloon-subtitle {
+    font-family: Arial, sans-serif;
+
+    color: #cfc1d1;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+}
+
+.counter {
+    font-family: Arial, sans-serif;
+
+    color: #e9a5d3;
+
+    font-size: 13px;
+
+    margin-bottom: 12px;
+}
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message-box {
+    min-height: 38px;
+
+    padding: 5px 18px;
+
+    margin-bottom: 8px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 13px;
+
+    color: #ead9e7;
+
+    transition:
+        opacity .4s,
+        transform .4s;
+}
+
+.message-show {
+    animation:
+        messageIn .5s ease;
+}
+
+
+/* =========================
+   BALLOON AREA
+========================= */
+
+.balloon-area {
+    position: relative;
+
+    width: 100%;
+    max-width: 370px;
+
+    height: 62vh;
+
+    min-height: 390px;
+}
+
+
+/* =========================
+   BALLOON
+========================= */
+
+.balloon {
+    position: absolute;
+
+    width: 58px;
+    height: 72px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    cursor: pointer;
+
+    transition:
+        transform .2s;
+
+    animation:
+        balloonFloat 3s ease-in-out infinite;
+
+    box-shadow:
+        inset -8px -8px 12px rgba(0,0,0,.13),
+        inset 8px 8px 10px rgba(255,255,255,.18),
+        0 0 14px rgba(255,150,210,.18);
+}
+
+
+/* BALLOON SHINE */
+
+.balloon::before {
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 20px;
+
+    background:
+        rgba(255,255,255,.25);
+
+    border-radius: 50%;
+
+    top: 12px;
+    left: 12px;
+
+    transform: rotate(25deg);
+}
+
+
+/* BALLOON KNOT */
+
+.balloon::after {
+    content: "";
+
+    position: absolute;
+
+    bottom: -7px;
+    left: 25px;
+
+    width: 9px;
+    height: 9px;
+
+    background: inherit;
+
+    transform: rotate(45deg);
+}
+
+
+/* STRINGS */
+
+.string {
+    position: absolute;
+
+    width: 1px;
+    height: 42px;
+
+    background:
+        rgba(255,255,255,.35);
+
+    top: 70px;
+    left: 29px;
+}
+
+
+/* =========================
+   BALLOON POSITIONS
+========================= */
+
+.b1 {
+    left: 4%;
+    top: 3%;
+    background: #e88ac2;
+    animation-delay: 0s;
+}
+
+.b2 {
+    left: 35%;
+    top: 0%;
+    background: #9b8be8;
+    animation-delay: .4s;
+}
+
+.b3 {
+    right: 3%;
+    top: 5%;
+    background: #eaa0b8;
+    animation-delay: .8s;
+}
+
+.b4 {
+    left: 18%;
+    top: 19%;
+    background: #b18de0;
+    animation-delay: 1.2s;
+}
+
+.b5 {
+    left: 51%;
+    top: 17%;
+    background: #e77fae;
+    animation-delay: .3s;
+}
+
+.b6 {
+    right: 8%;
+    top: 24%;
+    background: #8e9be8;
+    animation-delay: 1s;
+}
+
+.b7 {
+    left: 2%;
+    top: 38%;
+    background: #df91d0;
+    animation-delay: .7s;
+}
+
+.b8 {
+    left: 35%;
+    top: 35%;
+    background: #c58ae0;
+    animation-delay: 1.4s;
+}
+
+.b9 {
+    right: 3%;
+    top: 42%;
+    background: #ed8cae;
+    animation-delay: .2s;
+}
+
+.b10 {
+    left: 17%;
+    top: 55%;
+    background: #8fa6e8;
+    animation-delay: 1.1s;
+}
+
+.b11 {
+    left: 52%;
+    top: 53%;
+    background: #df8fc1;
+    animation-delay: .5s;
+}
+
+.b12 {
+    right: 10%;
+    top: 60%;
+    background: #b693e4;
+    animation-delay: 1.7s;
+}
+
+.b13 {
+    left: 3%;
+    top: 74%;
+    background: #e795b8;
+    animation-delay: .9s;
+}
+
+.b14 {
+    left: 35%;
+    top: 70%;
+    background: #9b92e8;
+    animation-delay: .2s;
+}
+
+.b15 {
+    right: 4%;
+    top: 76%;
+    background: #dc8fcf;
+    animation-delay: 1.3s;
+}
+
+.b16 {
+    left: 20%;
+    top: 88%;
+    background: #c38fdf;
+    animation-delay: .6s;
+}
+
+.b17 {
+    left: 51%;
+    top: 87%;
+    background: #e888b0;
+    animation-delay: 1.5s;
+}
+
+.b18 {
+    right: 19%;
+    top: 91%;
+    background: #8f9ce8;
+    animation-delay: .4s;
+}
+
+
+/* =========================
+   POP
+========================= */
+
+.popped {
+    animation:
+        popBalloon .45s forwards !important;
+
+    pointer-events: none;
+}
+
+.pop-particle {
+    position: absolute;
+
+    font-size: 17px;
+
+    pointer-events: none;
+
+    animation:
+        particle .7s ease-out forwards;
+}
+
+
+/* =========================
+   BIRTHDAY
+========================= */
+
+#birthdayScreen {
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(220,100,190,.16),
+            transparent 55%
+        );
+}
+
+.birthday-balloon {
+    font-size: 72px;
+
+    margin-bottom: 18px;
+
+    animation:
+        balloonFloat 2.5s infinite;
+}
+
+.birthday-title {
+    font-size: 36px;
+
+    color: #ffd1e9;
+
+    text-shadow:
+        0 0 22px rgba(255,160,215,.55);
+
+    margin-bottom: 12px;
+}
+
+.birthday-text {
+    margin-bottom: 30px;
+}
+
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes twinkle {
+
+    from {
+        opacity: .2;
+        transform: scale(.8);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+
+@keyframes heartbeat {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.08);
+    }
+}
+
+
+@keyframes countdownAppear {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(-8deg);
+    }
+
+    60% {
+        opacity: 1;
+
+        transform:
+            scale(1.18)
+            rotate(3deg);
+    }
+
+    100% {
+        transform:
+            scale(1)
+            rotate(0);
+    }
+}
+
+
+@keyframes balloonFloat {
+
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    50% {
+        transform:
+            translateY(-10px)
+            rotate(2deg);
+    }
+}
+
+
+@keyframes popBalloon {
+
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    45% {
+        transform: scale(1.25);
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+
+@keyframes particle {
+
+    0% {
+        transform:
+            translate(0,0)
+            scale(1);
+
+        opacity: 1;
+    }
+
+    100% {
+        transform:
+            translate(var(--x),var(--y))
+            scale(.2);
+
+        opacity: 0;
+    }
+}
+
+
+@keyframes messageIn {
+
+    0% {
+        opacity: 0;
+
+        transform:
+            translateY(8px);
+    }
+
+    100% {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     OPENING
+========================= -->
+
+<div class="screen" id="openingScreen">
+
+    <div class="glow one"></div>
+
+    <div class="glow two"></div>
+
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">·</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+
+    </div>
+
+
+    <div class="main-heart">
+        ♡
+    </div>
+
+
+    <h1>
+        A little surprise awaits...
+    </h1>
+
+
+    <p>
+        I made something small for you.<br>
+        Hopefully, it'll make you smile.
+    </p>
+
+
+    <button onclick="startSurprise()">
+        Open it ♡
+    </button>
+
+</div>
+
+
+
+<!-- =========================
+     COUNTDOWN
+========================= -->
+
+<div class="screen hidden" id="countdownScreen">
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+
+    </div>
+
+
+    <div class="countdown-text">
+        Wait... there's something for you ✨
+    </div>
+
+
+    <div id="countdownNumber">
+        3
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     BALLOONS
+========================= -->
+
+<div class="screen hidden" id="balloonScreen">
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+
+    </div>
+
+
+    <h1 class="balloon-heading">
+        A tiny challenge... 🎈
+    </h1>
+
+
+    <div class="balloon-subtitle">
+        There are 18 balloons waiting for you.
+    </div>
+
+
+    <div class="counter" id="counter">
+        0 / 18 popped
+    </div>
+
+
+    <div class="message-box" id="messageBox">
+        Tap a balloon to begin ♡
+    </div>
+
+
+    <div class="balloon-area">
+
+
+        <div class="balloon b1"
+             onclick="popBalloon(this,1)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b2"
+             onclick="popBalloon(this,2)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b3"
+             onclick="popBalloon(this,3)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b4"
+             onclick="popBalloon(this,4)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b5"
+             onclick="popBalloon(this,5)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b6"
+             onclick="popBalloon(this,6)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b7"
+             onclick="popBalloon(this,7)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b8"
+             onclick="popBalloon(this,8)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b9"
+             onclick="popBalloon(this,9)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b10"
+             onclick="popBalloon(this,10)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b11"
+             onclick="popBalloon(this,11)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b12"
+             onclick="popBalloon(this,12)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b13"
+             onclick="popBalloon(this,13)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b14"
+             onclick="popBalloon(this,14)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b15"
+             onclick="popBalloon(this,15)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b16"
+             onclick="popBalloon(this,16)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b17"
+             onclick="popBalloon(this,17)">
+            <span class="string"></span>
+        </div>
+
+
+        <div class="balloon b18"
+             onclick="popBalloon(this,18)">
+            <span class="string"></span>
+        </div>
+
+
+    </div>
+
+</div>
+
+
+
+<!-- =========================
+     BIRTHDAY SCREEN
+========================= -->
+
+<div class="screen hidden" id="birthdayScreen">
+
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+
+    </div>
+
+
+    <div class="birthday-balloon">
+        🎈🎈
+    </div>
+
+
+    <h1 class="birthday-title">
+
+        Happy Birthday,<br>
+        Xyzzyx! ♡
+
+    </h1>
+
+
+    <div style="
+        width:90%;
+        max-width:350px;
+        max-height:48vh;
+        overflow-y:auto;
+        box-sizing:border-box;
+        padding:24px 21px;
+        margin:0 auto 20px;
+        border:1px solid rgba(255,190,225,.22);
+        border-radius:22px;
+        background:rgba(255,255,255,.055);
+        backdrop-filter:blur(15px);
+        box-shadow:0 10px 40px rgba(0,0,0,.25);
+        text-align:left;
+    ">
+
+
+        <div style="
+            text-align:center;
+            font-size:12px;
+            letter-spacing:1.5px;
+            text-transform:uppercase;
+            color:#e8a8d2;
+            margin-bottom:22px;
+        ">
+            A little something for you...
+        </div>
+
+
+        <p style="
+            font-family:Georgia,serif;
+            font-size:18px;
+            color:#f2c4df;
+            margin-bottom:17px;
+        ">
+            Hey Xyzzyx,
+        </p>
+
+
+        <p style="
+            font-size:14px;
+            line-height:1.75;
+            color:#e5d9e3;
+            margin-bottom:17px;
+        ">
+            I hope this year brings you a lot of
+            happiness, good memories and countless
+            reasons to smile.
+        </p>
+
+
+        <p style="
+            font-size:14px;
+            line-height:1.75;
+            color:#e5d9e3;
+            margin-bottom:17px;
+        ">
+            Keep being the wonderful person you are,
+            keep laughing at the randomest things,
+            and keep making ordinary days a little
+            more memorable. ✨
+        </p>
+
+
+        <p style="
+            font-size:14px;
+            line-height:1.75;
+            color:#e5d9e3;
+            margin-bottom:17px;
+        ">
+            You deserve a really beautiful year ahead.
+            So here's to 18 and everything that comes
+            with it. 🫶
+        </p>
+
+
+        <p style="
+            text-align:right;
+            font-family:Georgia,serif;
+            font-size:13px;
+            line-height:1.6;
+            color:#d8b3cc;
+            margin-top:25px;
+        ">
+            — someone who wanted to make your day
+            a little more special ♡
+        </p>
+
+
+    </div>
+
+
+    <button onclick="continueBirthday()">
+        There's more ♡
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     PHOTO GALLERY
+========================= -->
+
+<div class="screen hidden" id="photosScreen">
+
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+
+    </div>
+
+
+    <h1 class="birthday-title">
+        A few memories... 📸
+    </h1>
+
+
+    <p style="
+        width:90%;
+        max-width:350px;
+        color:#cdb8ca;
+        font-size:14px;
+        line-height:1.6;
+        margin-bottom:25px;
+    ">
+        Because one little surprise wasn't enough. ♡
+    </p>
+
+
+    <div style="
+        width:90%;
+        max-width:350px;
+        display:flex;
+        flex-direction:column;
+        gap:18px;
+        max-height:55vh;
+        overflow-y:auto;
+    ">
+
+
+        <!-- PHOTO 1 -->
+
+        <div style="
+            padding:10px;
+            border-radius:20px;
+            background:rgba(255,255,255,.06);
+            border:1px solid rgba(255,190,225,.18);
+        ">
+
+            <div style="
+                height:180px;
+                border-radius:14px;
+                background:linear-gradient(135deg,#30203b,#17121f);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                overflow:hidden;
+            ">
+
+                <img
+                    src="images/photo1.jpg"
+                    style="
+                        width:100%;
+                        height:180px;
+                        object-fit:cover;
+                        border-radius:14px;
+                        display:block;
+                    "
+                >
+
+            </div>
+
+
+            <p style="
+                margin:12px 5px 3px;
+                color:#e8c5da;
+                font-size:14px;
+            ">
+                A little memory ♡
+            </p>
+
+        </div>
+
+
+
+        <!-- PHOTO 2 -->
+
+        <div style="
+            padding:10px;
+            border-radius:20px;
+            background:rgba(255,255,255,.06);
+            border:1px solid rgba(255,190,225,.18);
+        ">
+
+            <div style="
+                height:180px;
+                border-radius:14px;
+                background:linear-gradient(135deg,#30203b,#17121f);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                overflow:hidden;
+            ">
+
+                <img
+                    src="images/photo2.jpg"
+                    style="
+                        width:100%;
+                        height:180px;
+                        object-fit:cover;
+                        border-radius:14px;
+                        display:block;
+                    "
+                >
+
+            </div>
+
+
+            <p style="
+                margin:12px 5px 3px;
+                color:#e8c5da;
+                font-size:14px;
+            ">
+                Another little moment ✨
+            </p>
+
+        </div>
+
+
+
+        <!-- PHOTO 3 -->
+
+        <div style="
+            padding:10px;
+            border-radius:20px;
+            background:rgba(255,255,255,.06);
+            border:1px solid rgba(255,190,225,.18);
+        ">
+
+            <div style="
+                height:180px;
+                border-radius:14px;
+                background:linear-gradient(135deg,#30203b,#17121f);
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                overflow:hidden;
+            ">
+
+                <img
+                    src="images/photo3.jpg"
+                    style="
+                        width:100%;
+                        height:180px;
+                        object-fit:cover;
+                        border-radius:14px;
+                        display:block;
+                    "
+                >
+
+            </div>
+
+
+            <p style="
+                margin:12px 5px 3px;
+                color:#e8c5da;
+                font-size:14px;
+            ">
+                One more little memory ♡
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <button
+        onclick="showFinalLetter()"
+        style="margin-top:25px;"
+    >
+        One last thing... ♡
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     FINAL LETTER
+========================= -->
+
+<div class="screen hidden" id="finalLetterScreen">
+
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+
+    </div>
+
+
+    <div style="
+        font-size:55px;
+        margin-bottom:18px;
+        animation:heartbeat 3s ease-in-out infinite;
+    ">
+        💌
+    </div>
+
+
+    <h1 class="birthday-title">
+        One last thing... ♡
+    </h1>
+
+
+    <div style="
+        width:90%;
+        max-width:350px;
+        box-sizing:border-box;
+        padding:25px 22px;
+        border-radius:22px;
+        background:rgba(255,255,255,.055);
+        border:1px solid rgba(255,190,225,.22);
+        backdrop-filter:blur(15px);
+        box-shadow:0 10px 40px rgba(0,0,0,.25);
+        text-align:left;
+    ">
+
+
+        <p style="
+            font-family:Georgia,serif;
+            font-size:18px;
+            color:#f2c4df;
+            margin-bottom:20px;
+        ">
+            Dear Xyzzyx,
+        </p>
+
+
+        <p style="
+            font-size:14px;
+            line-height:1.8;
+            color:#e5d9e3;
+            margin-bottom:17px;
+        ">
+            If you've made it this far, then I guess
+            you really did go through the whole thing. ✨
+        </p>
+
+
+        <p style="
+            font-size:14px;
+            line-height:1.8;
+            color:#e5d9e3;
+            margin-bottom:17px;
+        ">
+            I just wanted to make something a little
+            different for your birthday — something
+            you could look back at and hopefully smile at.
+        </p>
+
+
+        <p style="
+            font-size:14px;
+            line-height:1.8;
+            color:#e5d9e3;
+            margin-bottom:20px;
+        ">
+            So yeah... that's pretty much it.
+            Happy 18th, Xyzzyx. 🎂✨
+        </p>
+
+
+        <p style="
+            text-align:right;
+            font-family:Georgia,serif;
+            font-size:14px;
+            color:#d8b3cc;
+        ">
+            Take care & keep smiling. ♡
+        </p>
+
+
+    </div>
+
+
+    <button onclick="showEnd()">
+        That's it... ♡
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     END SCREEN
+========================= -->
+
+<div class="screen hidden" id="endScreen">
+
+
+    <div class="stars">
+
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+        <span class="star">✦</span>
+        <span class="star">✧</span>
+        <span class="star">⋆</span>
+
+    </div>
+
+
+    <div style="
+        font-size:58px;
+        margin-bottom:22px;
+        animation:heartbeat 2.5s infinite;
+        text-shadow:0 0 25px rgba(255,170,220,.6);
+    ">
+        ♡
+    </div>
+
+
+    <h1 class="birthday-title">
+        Okay... now that's really it. ♡
+    </h1>
+
+
+    <p style="
+        width:90%;
+        max-width:330px;
+        color:#d9cedc;
+        font-size:14px;
+        line-height:1.8;
+        margin-bottom:28px;
+    ">
+        I hope this little surprise made you
+        smile at least once. ✨
+
+        <br>
+        <br>
+
+        Happy Birthday, Xyzzyx. 🎂
+    </p>
+
+
+    <div style="
+        color:#cda9c3;
+        font-family:Georgia,serif;
+        font-size:14px;
+        margin-bottom:28px;
+    ">
+        Take care & keep smiling ♡
+    </div>
+
+
+    <button onclick="location.reload()">
+        Replay from the beginning ↻
+    </button>
+
+
+</div>
+
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+let poppedCount = 0;
+
+
+/* =========================
+   BALLOON MESSAGES
+========================= */
+
+const messages = [
+
+    "✨ And we're just getting started...",
+
+    "👀 Okay, don't stop now...",
+
+    "💫 Go ahead, you have to pop them all!",
+
+    "🫶 There's more waiting for you...",
+
+    "🎀 You're doing pretty well...",
+
+    "🌷 Keep going, birthday girl!",
+
+    "👀 You didn't think that was it, did you?",
+
+    "✨ One down, another little surprise ahead.",
+
+    "💗 This is getting interesting...",
+
+    "🌙 A few more to go...",
+
+    "🦋 Keep going, you're almost there.",
+
+    "🎈 Don't leave any balloon behind!",
+
+    "🌸 Okay, you're actually committed now.",
+
+    "💫 We're getting closer...",
+
+    "🫶 Almost there. Keep going.",
+
+    "✨ Just a couple more surprises.",
+
+    "🎀 One last one after this...",
+
+    "🎉 You made it! Happy Birthday ♡"
+
+];
+
+
+/* =========================
+   OPEN
+========================= */
+
+function startSurprise() {
+
+    document
+        .getElementById("openingScreen")
+        .classList.add("hidden");
+
+
+    setTimeout(function() {
+
+        document
+            .getElementById("countdownScreen")
+            .classList.remove("hidden");
+
+
+        runCountdown();
+
+    }, 700);
+
+}
+
+
+/* =========================
+   COUNTDOWN
+========================= */
+
+function runCountdown() {
+
+    const number =
+        document.getElementById("countdownNumber");
+
+
+    let count = 3;
+
+
+    number.textContent = count;
+
+
+    const timer =
+        setInterval(function() {
+
+            count--;
+
+
+            if (count > 0) {
+
+                number.style.animation = "none";
+
+                void number.offsetWidth;
+
+                number.style.animation =
+                    "countdownAppear 1s ease";
+
+                number.textContent = count;
+
+            }
+
+
+            else {
+
+                clearInterval(timer);
+
+
+                number.style.animation =
+                    "countdownAppear 1s ease";
+
+                number.textContent = "✨";
+
+
+                setTimeout(function() {
+
+                    document
+                        .getElementById("countdownScreen")
+                        .classList.add("hidden");
+
+
+                    document
+                        .getElementById("balloonScreen")
+                        .classList.remove("hidden");
+
+
+                }, 900);
+
+            }
+
+
+        }, 1100);
+
+}
+
+
+/* =========================
+   POP BALLOON
+========================= */
+
+function popBalloon(balloon, number) {
+
+
+    if (
+        balloon.classList.contains("popped")
+    ) {
+        return;
+    }
+
+
+    poppedCount++;
+
+
+    balloon.classList.add("popped");
+
+
+    document
+        .getElementById("counter")
+        .textContent =
+        poppedCount + " / 18 popped";
+
+
+    /* PARTICLES */
+
+    for (let i = 0; i < 7; i++) {
+
+        const particle =
+            document.createElement("span");
+
+
+        particle.className =
+            "pop-particle";
+
+
+        particle.textContent =
+            ["✦","♡","✧","•"]
+            [
+                Math.floor(
+                    Math.random() * 4
+                )
+            ];
+
+
+        particle.style.left =
+            balloon.offsetLeft + 25 + "px";
+
+
+        particle.style.top =
+            balloon.offsetTop + 30 + "px";
+
+
+        particle.style.setProperty(
+            "--x",
+            (Math.random() * 100 - 50) + "px"
+        );
+
+
+        particle.style.setProperty(
+            "--y",
+            (Math.random() * 100 - 50) + "px"
+        );
+
+
+        document
+            .getElementById("balloonScreen")
+            .appendChild(particle);
+
+
+        setTimeout(function() {
+
+            particle.remove();
+
+        }, 750);
+
+    }
+
+
+    /* MESSAGE */
+
+    const messageBox =
+        document.getElementById("messageBox");
+
+
+    messageBox.classList.remove(
+        "message-show"
+    );
+
+
+    void messageBox.offsetWidth;
+
+
+    messageBox.textContent =
+        messages[poppedCount - 1];
+
+
+    messageBox.classList.add(
+        "message-show"
+    );
+
+
+    /* 18TH BALLOON */
+
+    if (poppedCount === 18) {
+
+        setTimeout(function() {
+
+            document
+                .getElementById("balloonScreen")
+                .classList.add("hidden");
+
+
+            document
+                .getElementById("birthdayScreen")
+                .classList.remove("hidden");
+
+
+        }, 1300);
+
+    }
+
+}
+
+
+/* =========================
+   BIRTHDAY → PHOTOS
+========================= */
+
+function continueBirthday() {
+
+    document
+        .getElementById("birthdayScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("photosScreen")
+        .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   PHOTOS → FINAL LETTER
+========================= */
+
+function showFinalLetter() {
+
+    document
+        .getElementById("photosScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("finalLetterScreen")
+        .classList.remove("hidden");
+
+}
+
+
+/* =========================
+   FINAL LETTER → END
+========================= */
+
+function showEnd() {
+
+    document
+        .getElementById("finalLetterScreen")
+        .classList.add("hidden");
+
+
+    document
+        .getElementById("endScreen")
+        .classList.remove("hidden");
+
+}
+
+</script>
+
+
+</body>
+
+</html>
